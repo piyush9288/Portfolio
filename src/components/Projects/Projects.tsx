@@ -258,8 +258,8 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
             key={project.id} 
             className="project-panel relative w-screen h-full flex items-center justify-center p-6 md:p-12 lg:p-24"
           >
-            {/* Background Project Number - Pushed to the far left edge of the screen so it doesn't overlap with text */}
-            <div className="absolute top-10 left-2 md:top-12 md:left-4 lg:top-16 lg:left-8 text-[15vw] md:text-[10vw] lg:text-[8vw] font-bold text-white/[0.05] leading-none pointer-events-none select-none z-0">
+            {/* Background Project Number - Pushed to the bottom left on mobile to avoid overlapping the visual box, and top left on PC */}
+            <div className="absolute bottom-12 left-4 md:bottom-auto md:top-12 md:left-4 lg:top-16 lg:left-8 text-[30vw] md:text-[10vw] lg:text-[8vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-0">
               {index + 1}
             </div>
 
