@@ -155,7 +155,7 @@ const Navbar: React.FC = () => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: i * 0.1 + 0.3, ease: 'easeOut' }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="group flex items-end gap-4 text-white w-fit"
+                  className="group flex items-end gap-4 text-white w-fit ml-4 sm:ml-6"
                 >
                   <span className="text-xs font-mono text-gray-500 mb-2 sm:mb-3">0{i + 1}</span>
                   <span className="text-4xl sm:text-5xl font-bold tracking-tighter uppercase relative group-hover:text-accent transition-colors duration-300">
