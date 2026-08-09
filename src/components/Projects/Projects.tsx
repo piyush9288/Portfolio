@@ -262,19 +262,26 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
             <div className="w-full px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24 h-auto lg:h-[80vh] items-center relative z-10 max-h-[90vh] overflow-y-auto lg:overflow-visible">
               
               {/* Content Side */}
-              <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10 pt-12 sm:pt-16 lg:pt-0">
-                {/* Background Project Number - Kept in left corner, spaced above text on mobile */}
-                <div className="absolute top-0 left-0 lg:-top-20 lg:-left-12 text-[25vw] sm:text-[20vw] md:text-[15vw] lg:text-[10vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-[-1]">
-                  {index + 1}
-                </div>
-
-                <div className="text-xs font-mono tracking-widest text-accent mb-4 sm:mb-6 relative z-10 mt-2 sm:mt-4 lg:mt-0">
-                  {project.date}
-                </div>
+              <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10 lg:pt-0">
                 
-                <h3 className="project-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter mb-4 md:mb-8 leading-none text-outline text-outline-hover transition-colors duration-300">
-                  {project.title}
-                </h3>
+                {/* Header Section: Number + Title side-by-side on mobile */}
+                <div className="flex items-start lg:block gap-4 sm:gap-6 mb-4 md:mb-8 relative">
+                  
+                  {/* Background Project Number - Side-by-side on mobile, Absolute Watermark on PC */}
+                  <div className="text-[25vw] sm:text-[20vw] lg:text-[10vw] font-bold text-white/[0.08] lg:text-white/[0.04] leading-[0.8] select-none flex-shrink-0 lg:absolute lg:-top-20 lg:-left-12 lg:z-[-1]">
+                    {index + 1}
+                  </div>
+                  
+                  <div className="flex flex-col justify-start pt-1 sm:pt-2 lg:pt-0">
+                    <div className="text-xs font-mono tracking-widest text-accent mb-2 sm:mb-4 lg:mb-6">
+                      {project.date}
+                    </div>
+                    
+                    <h3 className="project-title text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter leading-none text-outline text-outline-hover transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
                 
                 <div className="project-desc space-y-2 md:space-y-4 mb-4 md:mb-8">
                   {project.description.map((text, i) => (
