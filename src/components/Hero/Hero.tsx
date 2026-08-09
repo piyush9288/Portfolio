@@ -160,8 +160,8 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
                 </span>
               ))}
             </div>
-            {/* Space between names */}
-            <div className="w-3 sm:w-6 md:w-8"></div>
+            {/* Space between names - kept tight on all mobile screens */}
+            <div className="w-3 md:w-6 lg:w-8 flex-shrink-0"></div>
             {/* Last Name - Glowing Gradient */}
             <div className="flex pb-2">
               {lastName.split('').map((char, i) => (
@@ -174,12 +174,12 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
         </div>
         
         {/* Modern Glowing Divider */}
-        <div className="hero-divider h-[1px] max-w-2xl bg-gradient-to-r from-indigo-500 to-transparent my-6 relative">
+        <div className="hero-divider h-[1px] max-w-2xl bg-gradient-to-r from-indigo-500 to-transparent my-3 md:my-6 relative">
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4 h-[2px] bg-cyan-400 blur-[2px]"></div>
         </div>
 
         {/* Dynamic Typewriter Role & Description */}
-        <div className="hero-desc mt-4 max-w-3xl">
+        <div className="hero-desc mt-2 md:mt-4 max-w-3xl">
           <h2 className="text-[0.7rem] sm:text-sm md:text-3xl text-indigo-200 font-mono font-medium tracking-widest sm:tracking-wide mb-6 h-10 flex items-center whitespace-nowrap overflow-hidden">
             {typedRole}
             <motion.span 
