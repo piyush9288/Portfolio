@@ -110,7 +110,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
             </div>
 
             {/* Title */}
-            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] uppercase perspective-1000">
+            <div className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] uppercase perspective-1000">
               <motion.div 
                 initial={{ opacity: 0, y: 30, rotateX: -30 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
