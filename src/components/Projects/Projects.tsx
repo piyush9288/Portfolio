@@ -37,27 +37,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
           pin: true,
           scrub: 1,
           snap: snapPoints,
-          end: () => `+=${scrollContainer.offsetWidth + window.innerHeight}`,
-          onLeave: () => {
-            // Hide the last project when scrolling down into the footer
-            if (panels.length > 0) {
-              const lastPanelContent = panels[panels.length - 1].children[0].children;
-              gsap.set(lastPanelContent, { opacity: 0, y: 100 });
-            }
-          },
-          onEnterBack: () => {
-            // Animate it back up smoothly when scrolling up into the projects section
-            if (panels.length > 0) {
-              const lastPanelContent = panels[panels.length - 1].children[0].children;
-              gsap.to(lastPanelContent, {
-                opacity: 1,
-                y: 0,
-                stagger: 0.4,
-                duration: 2.0,
-                ease: 'power2.out'
-              });
-            }
-          }
+          end: () => `+=${scrollContainer.offsetWidth + window.innerHeight}`
         }
       });
       
