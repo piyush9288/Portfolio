@@ -26,7 +26,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
     <section 
       id="about" 
       ref={containerRef}
-      className="relative w-full py-32 bg-[#030014] overflow-hidden"
+      className="relative w-full pt-16 pb-24 md:pt-20 md:pb-32 bg-[#030014] overflow-hidden"
     >
       {/* Decorative background text */}
       <motion.div 
