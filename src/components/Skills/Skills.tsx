@@ -121,6 +121,89 @@ const FloatingTechIcons = ({ skills }: { skills: string[] }) => {
 
 const Skills: React.FC<SkillsProps> = ({ data }) => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobileView(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const ActiveVisual = ({ inAccordion = false }: { inAccordion?: boolean }) => (
+    <div className={`relative ${inAccordion ? 'h-[400px] sm:h-[450px] w-full mt-4 mb-2' : 'sticky top-24 h-[500px] lg:h-[600px]'} rounded-sm border border-indigo-500/20 bg-indigo-900/5 flex flex-col items-center justify-center overflow-hidden`}>
+      
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0%,transparent_50%)] pointer-events-none" />
+
+      <AnimatePresence mode="wait">
+        {activeCategory !== null ? (
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="w-full h-full flex flex-col relative z-10"
+          >
+            {/* 3D Canvas Area */}
+            <div className="h-3/5 w-full relative">
+              {/* Grid Floor overlay */}
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-indigo-900/20 to-transparent pointer-events-none z-10 border-b border-indigo-500/20"></div>
+              
+              <Canvas camera={{ position: [0, 0, 16], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[10, 10, 5]} intensity={1.5} />
+                <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#4f46e5" />
+                <Suspense fallback={null}>
+                  <FloatingTechIcons skills={data.skillCategories[activeCategory].skills} />
+                </Suspense>
+              </Canvas>
+            </div>
+
+            {/* Skills Tag Area */}
+            <div className="h-2/5 w-full p-4 sm:p-6 md:p-8 flex flex-col justify-start bg-indigo-950/20 backdrop-blur-sm border-t border-indigo-500/20">
+              <motion.h4 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm sm:text-base md:text-xl font-bold text-cyan-400 mb-3 sm:mb-4 md:mb-6 tracking-normal sm:tracking-wider uppercase flex items-center gap-2 sm:gap-3 w-full"
+              >
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0"></span>
+                <span className="truncate">{data.skillCategories[activeCategory].title}</span>
+              </motion.h4>
+              
+              <div className="flex flex-wrap gap-2 sm:gap-3 overflow-y-auto pr-2 pb-2">
+                {data.skillCategories[activeCategory].skills.map((skill, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 + 0.2, type: 'spring', damping: 12 }}
+                    className="px-3 sm:px-4 py-1 sm:py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-xs sm:text-sm font-mono text-indigo-100 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-cyan-300 transition-colors cursor-hover shadow-[0_0_10px_rgba(99,102,241,0.1)]"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="empty"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex flex-col items-center justify-center h-full text-indigo-300/40 font-mono text-xs sm:text-sm relative z-10 px-4 text-center"
+          >
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-dashed border-indigo-500/30 flex items-center justify-center mb-4 sm:mb-6 animate-spin-slow">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+            </div>
+            [ HOVER OVER A SYSTEM TO INITIALIZE ]
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 
   return (
     <section id="skills" className="relative w-full pt-16 pb-24 md:pt-20 md:pb-32 bg-[#030014] overflow-hidden">
@@ -161,117 +244,68 @@ const Skills: React.FC<SkillsProps> = ({ data }) => {
           {/* Left Side - Categories List */}
           <div className="lg:col-span-4 flex flex-col gap-3">
             {data.skillCategories.map((cat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`group relative p-5 border cursor-hover transition-all duration-300 overflow-hidden flex items-center gap-6 ${
-                  activeCategory === idx 
-                  ? 'border-cyan-400 bg-cyan-900/20 shadow-[0_0_20px_rgba(34,211,238,0.15)]' 
-                  : 'border-indigo-500/20 bg-indigo-900/10 hover:border-indigo-400/50 hover:bg-indigo-900/30'
-                }`}
-                onMouseEnter={() => setActiveCategory(idx)}
-                onMouseLeave={() => setActiveCategory(null)}
-                data-cursor-text="VIEW"
-              >
-                {/* Left Active Indicator */}
-                <div className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${activeCategory === idx ? 'bg-cyan-400' : 'bg-transparent group-hover:bg-indigo-400/50'}`}></div>
+              <React.Fragment key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className={`group relative p-5 border cursor-hover transition-all duration-300 overflow-hidden flex items-center gap-6 ${
+                    activeCategory === idx 
+                    ? 'border-cyan-400 bg-cyan-900/20 shadow-[0_0_20px_rgba(34,211,238,0.15)]' 
+                    : 'border-indigo-500/20 bg-indigo-900/10 hover:border-indigo-400/50 hover:bg-indigo-900/30'
+                  }`}
+                  onClick={() => setActiveCategory(idx === activeCategory ? null : idx)}
+                  onMouseEnter={() => !isMobileView && setActiveCategory(idx)}
+                  data-cursor-text="VIEW"
+                >
+                  {/* Left Active Indicator */}
+                  <div className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${activeCategory === idx ? 'bg-cyan-400' : 'bg-transparent group-hover:bg-indigo-400/50'}`}></div>
+                  
+                  {/* Index Number */}
+                  <div className={`font-mono text-xl font-bold transition-colors duration-300 ${activeCategory === idx ? 'text-cyan-400' : 'text-indigo-500/40'}`}>
+                    0{idx + 1}
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <h4 className={`text-lg font-bold tracking-wide transition-colors duration-300 ${activeCategory === idx ? 'text-white' : 'text-indigo-100/80 group-hover:text-indigo-100'}`}>
+                      {cat.title}
+                    </h4>
+                    <p className="text-xs font-mono text-indigo-300/50 mt-1 uppercase tracking-wider">
+                      {cat.skills.length} Technologies
+                    </p>
+                  </div>
+                </motion.div>
                 
-                {/* Index Number */}
-                <div className={`font-mono text-xl font-bold transition-colors duration-300 ${activeCategory === idx ? 'text-cyan-400' : 'text-indigo-500/40'}`}>
-                  0{idx + 1}
-                </div>
-                
-                <div className="flex flex-col">
-                  <h4 className={`text-lg font-bold tracking-wide transition-colors duration-300 ${activeCategory === idx ? 'text-white' : 'text-indigo-100/80 group-hover:text-indigo-100'}`}>
-                    {cat.title}
-                  </h4>
-                  <p className="text-xs font-mono text-indigo-300/50 mt-1 uppercase tracking-wider">
-                    {cat.skills.length} Technologies
-                  </p>
-                </div>
-              </motion.div>
+                {/* Mobile Accordion Content */}
+                <AnimatePresence>
+                  {isMobileView && activeCategory === idx && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <ActiveVisual inAccordion={true} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </React.Fragment>
             ))}
+            
+            {/* Show empty visual at bottom on mobile if nothing is selected */}
+            {isMobileView && activeCategory === null && (
+               <ActiveVisual inAccordion={true} />
+            )}
           </div>
 
-          {/* Right Side - Dynamic 3D Display & Skills */}
-          <div className="lg:col-span-8">
-            <div className="sticky top-24 relative h-[500px] lg:h-[600px] rounded-sm border border-indigo-500/20 bg-indigo-900/5 flex flex-col items-center justify-center overflow-hidden">
-              
-              {/* Background Glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0%,transparent_50%)] pointer-events-none" />
-
-              <AnimatePresence mode="wait">
-                {activeCategory !== null ? (
-                  <motion.div
-                    key={activeCategory}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="w-full h-full flex flex-col relative z-10"
-                  >
-                    {/* 3D Canvas Area */}
-                    <div className="h-3/5 w-full relative">
-                      {/* Grid Floor overlay */}
-                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-indigo-900/20 to-transparent pointer-events-none z-10 border-b border-indigo-500/20"></div>
-                      
-                      {/* Pulled camera much further back to z=16 so the widely spaced grid fits in the frame */}
-                      <Canvas camera={{ position: [0, 0, 16], fov: 45 }}>
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[10, 10, 5]} intensity={1.5} />
-                        <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#4f46e5" />
-                        <Suspense fallback={null}>
-                          <FloatingTechIcons skills={data.skillCategories[activeCategory].skills} />
-                        </Suspense>
-                      </Canvas>
-                    </div>
-
-                    {/* Skills Tag Area */}
-                    <div className="h-2/5 w-full p-6 md:p-8 flex flex-col justify-start bg-indigo-950/20 backdrop-blur-sm border-t border-indigo-500/20">
-                      <motion.h4 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-sm sm:text-base md:text-xl font-bold text-cyan-400 mb-4 md:mb-6 tracking-normal sm:tracking-wider uppercase flex items-center gap-2 sm:gap-3 w-full"
-                      >
-                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0"></span>
-                        <span className="truncate">{data.skillCategories[activeCategory].title}</span>
-                      </motion.h4>
-                      
-                      <div className="flex flex-wrap gap-3">
-                        {data.skillCategories[activeCategory].skills.map((skill, i) => (
-                          <motion.span
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.05 + 0.2, type: 'spring', damping: 12 }}
-                            className="px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-sm font-mono text-indigo-100 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-cyan-300 transition-colors cursor-hover shadow-[0_0_10px_rgba(99,102,241,0.1)]"
-                          >
-                            {skill}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="empty"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="flex flex-col items-center justify-center h-full text-indigo-300/40 font-mono text-sm relative z-10"
-                  >
-                    <div className="w-16 h-16 rounded-full border border-dashed border-indigo-500/30 flex items-center justify-center mb-6 animate-spin-slow">
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                    </div>
-                    [ HOVER OVER A SYSTEM TO INITIALIZE ]
-                  </motion.div>
-                )}
-              </AnimatePresence>
+          {/* Right Side - Dynamic 3D Display & Skills (PC ONLY) */}
+          {!isMobileView && (
+            <div className="hidden lg:block lg:col-span-8">
+              <ActiveVisual inAccordion={false} />
             </div>
-          </div>
+          )}
           
         </div>
       </div>
