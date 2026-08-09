@@ -277,7 +277,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                       {project.date}
                     </div>
                     
-                    <h3 className="project-title text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter leading-none text-outline text-outline-hover transition-colors duration-300">
+                    <h3 className="project-title text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase tracking-tighter leading-none text-outline text-outline-hover transition-colors duration-300">
                       {project.title}
                     </h3>
                   </div>
