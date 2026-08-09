@@ -1,7 +1,7 @@
 import React, { useState, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
-import { Float, Html, MeshDistortMaterial } from '@react-three/drei';
+import { Float, Html } from '@react-three/drei';
 import type { PortfolioData } from '../../types/portfolio';
 
 interface SkillsProps {

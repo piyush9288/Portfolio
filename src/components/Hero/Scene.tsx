@@ -7,7 +7,7 @@ import * as THREE from 'three';
 const ReactAtom = ({ position, scale = 1 }: { position: [number, number, number], scale?: number }) => {
   const groupRef = useRef<THREE.Group>(null);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.005;
       groupRef.current.rotation.x += 0.01;

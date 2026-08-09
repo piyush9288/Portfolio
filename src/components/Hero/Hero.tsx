@@ -16,7 +16,7 @@ const useTypewriter = (text: string, typingSpeed: number = 80, deletingSpeed: nu
   useEffect(() => {
     let i = 0;
     let isDeleting = false;
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const tick = () => {
       setDisplayedText(text.substring(0, i));
