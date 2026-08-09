@@ -182,7 +182,7 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
 
           {/* Dynamic Typewriter Role & Description */}
           <div className="hero-desc mt-2 md:mt-4 max-w-3xl">
-            <h2 className="text-[0.7rem] sm:text-sm md:text-3xl text-indigo-200 font-mono font-medium tracking-widest sm:tracking-wide mb-6 h-10 flex items-center whitespace-nowrap overflow-hidden">
+            <h2 className="text-xs min-[400px]:text-[0.85rem] sm:text-base md:text-3xl text-indigo-200 font-mono font-medium tracking-widest sm:tracking-wide mb-6 h-10 flex items-center whitespace-nowrap overflow-hidden">
               {typedRole}
               <motion.span 
                 animate={{ opacity: [0, 1, 0] }}
