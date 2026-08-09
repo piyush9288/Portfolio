@@ -299,10 +299,10 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
         {data.projects.map((project, index) => (
           <div 
             key={project.id} 
-            className="project-panel relative w-screen h-full flex items-center justify-center p-6 md:p-12 lg:p-24"
+            className="project-panel relative w-screen h-full flex items-start lg:items-center justify-center pt-28 pb-6 px-6 md:pt-32 md:pb-12 md:px-12 lg:p-24"
           >
 
-            <div className="w-full px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24 h-auto lg:h-[80vh] items-center relative z-10 max-h-[90vh] overflow-y-auto lg:overflow-visible">
+            <div className="w-full px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24 h-auto lg:h-[80vh] items-center relative z-10 max-h-full lg:max-h-[90vh] overflow-y-auto lg:overflow-visible">
               
               {/* Content Side */}
               <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10 lg:pt-0">
