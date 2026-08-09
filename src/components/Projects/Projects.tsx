@@ -21,15 +21,23 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
 
       const panels = gsap.utils.toArray('.project-panel') as HTMLElement[];
       
-      const mainScrollTween = gsap.to(panels, {
-        xPercent: -100 * (panels.length - 1),
-        ease: 'none',
+      // Calculate snap points for the timeline
+      const moveDuration = panels.length > 1 ? panels.length - 1 : 1;
+      const pauseDuration = 1; // 1 unit of pause at the end
+      const totalDuration = moveDuration + pauseDuration;
+      const snapPoints = [];
+      for (let i = 0; i <= moveDuration; i++) {
+        snapPoints.push(i / totalDuration);
+      }
+      snapPoints.push(1);
+
+      const mainScrollTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
           scrub: 1,
-          snap: 1 / (panels.length - 1),
-          end: () => `+=${scrollContainer.offsetWidth}`,
+          snap: snapPoints,
+          end: () => `+=${scrollContainer.offsetWidth + window.innerHeight}`,
           onLeave: () => {
             // Hide the last project when scrolling down into the footer
             if (panels.length > 0) {
@@ -52,6 +60,13 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
           }
         }
       });
+      
+      mainScrollTimeline.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: 'none',
+        duration: moveDuration
+      })
+      .to({}, { duration: pauseDuration });
       
       // Animations within panels
       panels.forEach((panel, index) => {
@@ -87,7 +102,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: panel,
-                containerAnimation: mainScrollTween,
+                containerAnimation: mainScrollTimeline,
                 start: 'left 80%',
                 toggleActions: 'play none none reverse',
               }
