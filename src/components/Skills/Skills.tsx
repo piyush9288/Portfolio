@@ -70,23 +70,31 @@ const getIconUrl = (skill: string) => {
 
 const FloatingTechIcons = ({ skills }: { skills: string[] }) => {
   const { viewport } = useThree();
-  const isMobile = viewport.width < 12;
+  
+  // Use a higher threshold since the canvas aspect ratio makes it wider than the phone screen
+  const isMobile = viewport.width < 18; 
 
   return (
     <group>
       {skills.slice(0, 12).map((skill, i) => {
         const total = Math.min(skills.length, 12);
         
+        // Use max 3 columns on mobile to ensure it's not too wide
         const maxCols = isMobile ? 3 : 5;
         const columns = total > maxCols ? maxCols : total; 
         const row = Math.floor(i / columns);
         const col = i % columns;
         
-        const spacingX = isMobile ? 2.2 : 4.0;
-        const spacingY = isMobile ? 2.5 : 4.5;
+        // Dynamically compute spacing so grid never exceeds 80% of the viewport bounds
+        const availableWidth = viewport.width * 0.8;
+        const availableHeight = viewport.height * 0.8;
+        
+        const spacingX = columns > 1 ? Math.min(4.0, availableWidth / (columns - 1)) : 0;
+        
+        const totalRows = Math.ceil(total / columns);
+        const spacingY = totalRows > 1 ? Math.min(4.5, availableHeight / (totalRows - 1)) : 0;
         
         const startX = -((columns - 1) * spacingX) / 2;
-        const totalRows = Math.ceil(total / columns);
         const startY = ((totalRows - 1) * spacingY) / 2;
         
         const x = startX + col * spacingX;
@@ -96,7 +104,7 @@ const FloatingTechIcons = ({ skills }: { skills: string[] }) => {
         return (
           <Float key={i} speed={2} rotationIntensity={0.2} floatIntensity={0.5} position={[x, y, z]}>
             <Html center transform sprite distanceFactor={isMobile ? 10 : 14}>
-              <div className="w-14 h-14 md:w-24 md:h-24 rounded-2xl bg-[#0a0a1a]/80 backdrop-blur-xl border border-indigo-500/40 p-3 md:p-5 flex items-center justify-center shadow-[0_4px_15px_rgba(34,211,238,0.1)] hover:border-cyan-400 hover:scale-110 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300">
+              <div className="w-12 h-12 md:w-20 md:h-20 rounded-2xl bg-[#0a0a1a]/80 backdrop-blur-xl border border-indigo-500/40 p-2.5 md:p-4 flex items-center justify-center shadow-[0_4px_15px_rgba(34,211,238,0.1)] hover:border-cyan-400 hover:scale-110 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300">
                 <img 
                   src={getIconUrl(skill)} 
                   alt={skill} 
