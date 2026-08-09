@@ -62,13 +62,13 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
     switch(id) {
       case 'ai-personal-os':
         return (
-          <div className="w-full h-full flex flex-col justify-center items-center gap-4 relative">
+          <div className="w-full h-full flex flex-col justify-center items-center gap-3 md:gap-4 relative p-4">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/20 via-background to-background" />
-            <div className="flex items-center gap-2 md:gap-4 z-10 text-xs md:text-sm font-mono text-gray-400">
+            <div className="flex flex-wrap justify-center items-center gap-1.5 md:gap-4 z-10 text-[10px] sm:text-xs md:text-sm font-mono text-gray-400">
               <motion.span 
                 animate={{ y: [0, -5, 0] }} 
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="px-3 py-1 border border-white/20 rounded-full bg-white/5"
+                className="px-2 py-1 md:px-3 md:py-1 border border-white/20 rounded-full bg-white/5"
               >
                 TASKS
               </motion.span>
@@ -76,7 +76,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               <motion.span 
                 animate={{ y: [0, -5, 0] }} 
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                className="px-3 py-1 border border-white/20 rounded-full bg-white/5"
+                className="px-2 py-1 md:px-3 md:py-1 border border-white/20 rounded-full bg-white/5"
               >
                 GOALS
               </motion.span>
@@ -84,44 +84,44 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               <motion.span 
                 animate={{ scale: [1, 1.1, 1], boxShadow: ["0px 0px 0px rgba(0,255,255,0)", "0px 0px 20px rgba(0,255,255,0.5)", "0px 0px 0px rgba(0,255,255,0)"] }} 
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-                className="px-3 py-1 border border-accent bg-accent/20 rounded-full text-white font-bold"
+                className="px-2 py-1 md:px-3 md:py-1 border border-accent bg-accent/20 rounded-full text-white font-bold"
               >
                 AI CORE
               </motion.span>
             </div>
-            <div className="mt-8 w-48 h-48 border border-white/10 rounded-full flex items-center justify-center relative animate-[spin_20s_linear_infinite]">
+            <div className="mt-4 md:mt-8 w-32 h-32 md:w-48 md:h-48 border border-white/10 rounded-full flex items-center justify-center relative animate-[spin_20s_linear_infinite]">
                <div className="absolute w-full h-[1px] bg-accent/50 rotate-45" />
                <div className="absolute w-full h-[1px] bg-accent/50 -rotate-45" />
-               <div className="w-24 h-24 border border-accent/50 rounded-full animate-[spin_10s_reverse_linear_infinite] flex items-center justify-center relative">
+               <div className="w-16 h-16 md:w-24 md:h-24 border border-accent/50 rounded-full animate-[spin_10s_reverse_linear_infinite] flex items-center justify-center relative">
                   {/* Moving data packets on the ring */}
                   <motion.div 
                     animate={{ rotate: 360 }} 
                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                     className="absolute w-full h-full rounded-full"
                   >
-                    <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_15px_white] absolute top-[-6px] left-1/2 -translate-x-1/2" />
+                    <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_15px_white] absolute top-[-4px] md:top-[-6px] left-1/2 -translate-x-1/2" />
                   </motion.div>
-                  <div className="w-4 h-4 bg-accent rounded-full shadow-[0_0_20px_var(--color-accent)] animate-pulse" />
+                  <div className="w-3 h-3 md:w-4 md:h-4 bg-accent rounded-full shadow-[0_0_20px_var(--color-accent)] animate-pulse" />
                </div>
             </div>
           </div>
         );
       case 'smart-research-assistant':
         return (
-          <div className="w-full h-full flex flex-col justify-center items-center gap-6 relative">
+          <div className="w-full h-full flex flex-col justify-center items-center gap-3 md:gap-6 relative p-4">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-background to-background" />
             
             <div className="flex flex-col items-center z-10 w-full max-w-sm">
               <motion.div 
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className="px-6 py-2 border border-white/10 bg-white/5 rounded backdrop-blur-sm"
+                className="px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-base border border-white/10 bg-white/5 rounded backdrop-blur-sm"
               >
                 DOCUMENT
               </motion.div>
               
               {/* Flowing data line */}
-              <div className="h-10 w-[2px] bg-white/10 relative overflow-hidden my-2">
+              <div className="h-6 md:h-10 w-[2px] bg-white/10 relative overflow-hidden my-1.5 md:my-2">
                 <motion.div 
                   animate={{ y: [-40, 40] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
@@ -129,13 +129,13 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                 />
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-2 md:gap-4 flex-wrap justify-center max-w-[200px] md:max-w-none">
                 {[1,2,3,4].map((item, i) => (
                   <motion.div 
                     key={item} 
                     animate={{ y: [0, -10, 0], borderColor: ["rgba(6,182,212,0.3)", "rgba(6,182,212,1)", "rgba(6,182,212,0.3)"] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-                    className="w-10 h-10 bg-cyan-500/10 border-2 rounded-lg flex items-center justify-center text-sm font-mono text-cyan-200"
+                    className="w-8 h-8 md:w-10 md:h-10 bg-cyan-500/10 border-2 rounded-lg flex items-center justify-center text-xs md:text-sm font-mono text-cyan-200"
                   >
                     E{item}
                   </motion.div>
@@ -143,7 +143,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               </div>
               
               {/* Flowing data line */}
-              <div className="h-10 w-[2px] bg-cyan-500/20 relative overflow-hidden my-2">
+              <div className="h-6 md:h-10 w-[2px] bg-cyan-500/20 relative overflow-hidden my-1.5 md:my-2">
                 <motion.div 
                   animate={{ y: [-40, 40] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
@@ -154,7 +154,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               <motion.div 
                 animate={{ scale: [1, 1.05, 1], boxShadow: ["0 0 15px rgba(6,182,212,0.3)", "0 0 30px rgba(6,182,212,0.8)", "0 0 15px rgba(6,182,212,0.3)"] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="px-8 py-3 border border-cyan-400 bg-cyan-900/30 rounded-xl text-cyan-300 font-bold tracking-widest backdrop-blur-md"
+                className="px-4 py-2 md:px-8 md:py-3 border border-cyan-400 bg-cyan-900/30 rounded-xl text-cyan-300 font-bold tracking-widest backdrop-blur-md text-xs md:text-base text-center"
               >
                 LLM ANSWER
               </motion.div>
@@ -163,21 +163,21 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
         );
       case 'ai-resume-analyzer':
         return (
-          <div className="w-full h-full flex flex-col justify-center items-center gap-4 relative">
+          <div className="w-full h-full flex flex-col justify-center items-center gap-4 relative py-6">
              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-violet-900/30 via-background to-background" />
              
-             <div className="relative z-10 grid grid-cols-2 gap-8 w-full max-w-lg px-8">
+             <div className="relative z-10 flex flex-col sm:grid sm:grid-cols-2 gap-4 md:gap-8 w-full max-w-lg px-4 md:px-8">
                 {/* Resume Scanning Animation */}
-                <div className="border border-white/20 bg-white/5 p-5 rounded-lg flex flex-col gap-4 relative overflow-hidden h-40 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
-                   <div className="w-full h-2 bg-white/10 rounded" />
-                   <div className="w-3/4 h-2 bg-white/10 rounded" />
-                   <div className="w-5/6 h-2 bg-white/10 rounded" />
-                   <div className="w-1/2 h-2 bg-white/10 rounded" />
-                   <div className="w-full h-2 bg-white/10 rounded" />
+                <div className="border border-white/20 bg-white/5 p-4 md:p-5 rounded-lg flex flex-col gap-3 md:gap-4 relative overflow-hidden h-28 md:h-40 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+                   <div className="w-full h-1.5 md:h-2 bg-white/10 rounded" />
+                   <div className="w-3/4 h-1.5 md:h-2 bg-white/10 rounded" />
+                   <div className="w-5/6 h-1.5 md:h-2 bg-white/10 rounded" />
+                   <div className="w-1/2 h-1.5 md:h-2 bg-white/10 rounded" />
+                   <div className="w-full h-1.5 md:h-2 bg-white/10 rounded" />
                    
                    {/* Laser Scanner */}
                    <motion.div 
-                     animate={{ y: [-10, 140, -10] }}
+                     animate={{ y: [-10, 100, -10] }}
                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                      className="absolute top-0 left-0 w-full h-[2px] bg-violet-400 shadow-[0_0_15px_rgba(139,92,246,1)] z-20" 
                    >
@@ -186,13 +186,13 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                 </div>
                 
                 {/* Metrics */}
-                <div className="flex flex-col justify-center gap-6">
-                   <div className="flex flex-col gap-2">
-                     <div className="flex items-center justify-between text-xs font-mono">
+                <div className="flex flex-col justify-center gap-4 md:gap-6">
+                   <div className="flex flex-col gap-1 md:gap-2">
+                     <div className="flex items-center justify-between text-[10px] md:text-xs font-mono">
                        <span className="text-gray-300">NLP PARSING</span>
                        <span className="text-green-400">100%</span>
                      </div>
-                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                     <div className="w-full h-1 md:h-1.5 bg-white/10 rounded-full overflow-hidden">
                        <motion.div 
                          animate={{ width: ["0%", "100%", "100%"] }} 
                          transition={{ duration: 3, repeat: Infinity, times: [0, 0.4, 1] }}
@@ -201,12 +201,12 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                      </div>
                    </div>
 
-                   <div className="flex flex-col gap-2">
-                     <div className="flex items-center justify-between text-xs font-mono">
+                   <div className="flex flex-col gap-1 md:gap-2">
+                     <div className="flex items-center justify-between text-[10px] md:text-xs font-mono">
                        <span className="text-gray-300">ATS SCORE</span>
                        <span className="text-cyan-400">92%</span>
                      </div>
-                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                     <div className="w-full h-1 md:h-1.5 bg-white/10 rounded-full overflow-hidden">
                        <motion.div 
                          animate={{ width: ["0%", "92%", "92%"] }} 
                          transition={{ duration: 3, repeat: Infinity, times: [0, 0.5, 1], delay: 0.2 }}
@@ -215,9 +215,9 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                      </div>
                    </div>
 
-                   <div className="flex flex-col gap-2">
-                     <div className="flex items-center justify-between text-xs font-mono">
-                       <span className="text-gray-300">AI SUGGESTIONS</span>
+                   <div className="flex flex-col gap-1 md:gap-2">
+                     <div className="flex items-center justify-between text-[10px] md:text-xs font-mono">
+                       <span className="text-gray-300">SUGGESTIONS</span>
                        <motion.span 
                          animate={{ opacity: [0, 1, 1] }} 
                          transition={{ duration: 3, repeat: Infinity, times: [0, 0.7, 1] }}
@@ -226,7 +226,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                          GENERATED
                        </motion.span>
                      </div>
-                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                     <div className="w-full h-1 md:h-1.5 bg-white/10 rounded-full overflow-hidden">
                        <motion.div 
                          animate={{ width: ["0%", "100%", "100%"] }} 
                          transition={{ duration: 3, repeat: Infinity, times: [0, 0.6, 1], delay: 0.4 }}
@@ -297,7 +297,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
 
               {/* Visual Side */}
               <div 
-                className="h-full min-h-[200px] md:min-h-[300px] lg:min-h-[500px] border border-white/10 bg-surface rounded-xl overflow-hidden order-1 lg:order-2 cursor-hover group relative"
+                className="h-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[500px] border border-white/10 bg-surface rounded-xl overflow-hidden order-1 lg:order-2 cursor-hover group relative"
                 data-cursor-text="VIEW"
               >
                 {/* Subtle border glow on hover */}
