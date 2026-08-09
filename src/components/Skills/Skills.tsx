@@ -103,8 +103,8 @@ const FloatingTechIcons = ({ skills }: { skills: string[] }) => {
 
         return (
           <Float key={i} speed={2} rotationIntensity={0.2} floatIntensity={0.5} position={[x, y, z]}>
-            <Html center transform sprite distanceFactor={isMobile ? 10 : 14}>
-              <div className="w-12 h-12 md:w-20 md:h-20 rounded-2xl bg-[#0a0a1a]/80 backdrop-blur-xl border border-indigo-500/40 p-2.5 md:p-4 flex items-center justify-center shadow-[0_4px_15px_rgba(34,211,238,0.1)] hover:border-cyan-400 hover:scale-110 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300">
+            <Html center transform sprite distanceFactor={isMobile ? 12.5 : 15}>
+              <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl bg-[#0a0a1a]/80 backdrop-blur-xl border border-indigo-500/40 p-3 md:p-5 flex items-center justify-center shadow-[0_4px_15px_rgba(34,211,238,0.1)] hover:border-cyan-400 hover:scale-110 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300">
                 <img 
                   src={getIconUrl(skill)} 
                   alt={skill} 
