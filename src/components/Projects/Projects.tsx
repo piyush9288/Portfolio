@@ -23,7 +23,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
       
       // Calculate snap points for the timeline
       const moveDuration = panels.length > 1 ? panels.length - 1 : 1;
-      const pauseDuration = 1; // 1 unit of pause at the end
+      const pauseDuration = 0.5; // Half unit of pause at the end
       const totalDuration = moveDuration + pauseDuration;
       const snapPoints = [];
       for (let i = 0; i <= moveDuration; i++) {
@@ -37,7 +37,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
           pin: true,
           scrub: 1,
           snap: snapPoints,
-          end: () => `+=${scrollContainer.offsetWidth * 1.5}`
+          end: () => `+=${scrollContainer.offsetWidth * 1.25}`
         }
       });
       
