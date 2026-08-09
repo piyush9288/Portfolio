@@ -63,10 +63,10 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
           <span className="w-8 h-[1px] bg-accent"></span>
         </div>
 
-        <div className="perspective-1000 mb-12 md:mb-20 w-full">
-          <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter uppercase leading-[0.9] break-words whitespace-normal">
-            <div className="overflow-hidden p-1 md:p-2"><div className="cta-text-line">LET'S BUILD SOMETHING</div></div>
-            <div className="overflow-hidden p-1 md:p-2"><div className="cta-text-line text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-accent">INTELLIGENT.</div></div>
+        <div className="perspective-1000 mb-12 md:mb-20 w-full overflow-hidden">
+          <h2 className="text-[8vw] sm:text-[7vw] md:text-7xl lg:text-9xl font-bold tracking-tighter uppercase leading-[0.9]">
+            <div className="overflow-hidden p-1 md:p-2"><div className="cta-text-line whitespace-nowrap">LET'S BUILD SOMETHING</div></div>
+            <div className="overflow-hidden p-1 md:p-2"><div className="cta-text-line text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-accent whitespace-nowrap">INTELLIGENT.</div></div>
           </h2>
         </div>
 
