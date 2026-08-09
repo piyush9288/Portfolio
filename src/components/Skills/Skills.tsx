@@ -234,10 +234,10 @@ const Skills: React.FC<SkillsProps> = ({ data }) => {
                       <motion.h4 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-sm sm:text-base md:text-xl font-bold text-cyan-400 mb-4 md:mb-6 tracking-normal sm:tracking-wider uppercase flex items-center gap-2 sm:gap-3 whitespace-nowrap overflow-hidden"
+                        className="text-sm sm:text-base md:text-xl font-bold text-cyan-400 mb-4 md:mb-6 tracking-normal sm:tracking-wider uppercase flex items-center gap-2 sm:gap-3 w-full"
                       >
                         <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0"></span>
-                        {data.skillCategories[activeCategory].title}
+                        <span className="truncate">{data.skillCategories[activeCategory].title}</span>
                       </motion.h4>
                       
                       <div className="flex flex-wrap gap-3">
