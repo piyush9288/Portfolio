@@ -224,7 +224,7 @@ export const Scene = () => {
     <>
       <DataParticles />
       
-      <group ref={mainGroupRef} position={[isMobile ? 0 : 3.5, 0, 0]} scale={isMobile ? 0.8 : 1}>
+      <group ref={mainGroupRef} position={[isMobile ? 0 : 3.5, 0, 0]} scale={isMobile ? 0.55 : 1}>
         <NetworkRing />
         
         {/* Tech Stack Layout */}
