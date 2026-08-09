@@ -1,5 +1,5 @@
 import { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Float, Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -202,6 +202,8 @@ const DataParticles = () => {
 
 export const Scene = () => {
   const mainGroupRef = useRef<THREE.Group>(null);
+  const { viewport } = useThree();
+  const isMobile = viewport.width < 7;
 
   useFrame((state) => {
     if (mainGroupRef.current) {
@@ -222,7 +224,7 @@ export const Scene = () => {
     <>
       <DataParticles />
       
-      <group ref={mainGroupRef} position={[3.5, 0, 0]}>
+      <group ref={mainGroupRef} position={[isMobile ? 0 : 3.5, 0, 0]} scale={isMobile ? 0.8 : 1}>
         <NetworkRing />
         
         {/* Tech Stack Layout */}
