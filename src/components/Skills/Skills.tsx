@@ -114,7 +114,7 @@ const Skills: React.FC<SkillsProps> = ({ data }) => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
 
   return (
-    <section id="skills" className="relative w-full py-32 bg-[#030014] overflow-hidden">
+    <section id="skills" className="relative w-full pt-16 pb-24 md:pt-20 md:pb-32 bg-[#030014] overflow-hidden">
       <div className="w-full px-6 md:px-12 lg:px-20 relative z-10">
         
         {/* Header */}
