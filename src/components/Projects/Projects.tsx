@@ -46,9 +46,9 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
             {
               opacity: 1, 
               y: 0,
-              stagger: 0.2,
-              duration: 1.2,
-              ease: 'power3.out',
+              stagger: 0.4,
+              duration: 2.0,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: 'top 75%', // Animate when section is 75% in viewport
@@ -63,9 +63,9 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
             { 
               opacity: 1, 
               x: 0,
-              stagger: 0.2,
-              duration: 1,
-              ease: 'power3.out',
+              stagger: 0.3,
+              duration: 1.5,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: panel,
                 containerAnimation: gsap.globalTimeline.getById('mainScroll') as any,
