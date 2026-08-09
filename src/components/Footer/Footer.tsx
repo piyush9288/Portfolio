@@ -35,8 +35,8 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
           </span>
         </div>
         
-        {/* Back to top icon - Absolute right corner on mobile, static on PC */}
-        <div className="absolute right-0 top-0 md:relative md:right-auto md:top-auto">
+        {/* Back to top icon - Absolute right, vertically centered on mobile, static on PC */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 md:relative md:right-auto md:top-auto md:translate-y-0">
           <button 
             onClick={scrollToTop}
             data-no-cursor="true"
