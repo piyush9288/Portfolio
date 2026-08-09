@@ -151,7 +151,7 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
 
         {/* Main Title */}
         <div className="perspective-1000 z-30">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter uppercase font-heading flex flex-row items-end whitespace-nowrap">
+          <h1 className="text-[12vw] sm:text-[10vw] md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter uppercase font-heading flex flex-row items-end whitespace-nowrap">
             {/* First Name - Solid White */}
             <div className="flex pb-2">
               {firstName.split('').map((char, i) => (
