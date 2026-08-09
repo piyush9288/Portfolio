@@ -1,0 +1,317 @@
+import React, { useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { PortfolioData } from '../../types/portfolio';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface ProjectsProps {
+  data: PortfolioData;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ data }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+
+      const panels = gsap.utils.toArray('.project-panel') as HTMLElement[];
+      
+      gsap.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          id: 'mainScroll',
+          trigger: sectionRef.current,
+          pin: true,
+          scrub: 1,
+          snap: 1 / (panels.length - 1),
+          end: () => `+=${scrollContainer.offsetWidth}`,
+        }
+      });
+      
+      // Animations within panels
+      panels.forEach((panel) => {
+        const title = panel.querySelector('.project-title');
+        
+        // Simple parallax effect for content inside panels
+        gsap.fromTo(title, 
+          { x: 100, opacity: 0 },
+          { 
+            x: 0, opacity: 1, 
+            scrollTrigger: {
+              trigger: panel,
+              containerAnimation: gsap.globalTimeline.getById('mainScroll') as any,
+              start: 'left center',
+              toggleActions: 'play none none reverse',
+            }
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Dynamic animated visual generators based on project ID
+  const getVisual = (id: string) => {
+    switch(id) {
+      case 'ai-personal-os':
+        return (
+          <div className="w-full h-full flex flex-col justify-center items-center gap-4 relative">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/20 via-background to-background" />
+            <div className="flex items-center gap-2 md:gap-4 z-10 text-xs md:text-sm font-mono text-gray-400">
+              <motion.span 
+                animate={{ y: [0, -5, 0] }} 
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="px-3 py-1 border border-white/20 rounded-full bg-white/5"
+              >
+                TASKS
+              </motion.span>
+              <span className="text-accent">→</span>
+              <motion.span 
+                animate={{ y: [0, -5, 0] }} 
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                className="px-3 py-1 border border-white/20 rounded-full bg-white/5"
+              >
+                GOALS
+              </motion.span>
+              <span className="text-accent">→</span>
+              <motion.span 
+                animate={{ scale: [1, 1.1, 1], boxShadow: ["0px 0px 0px rgba(0,255,255,0)", "0px 0px 20px rgba(0,255,255,0.5)", "0px 0px 0px rgba(0,255,255,0)"] }} 
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                className="px-3 py-1 border border-accent bg-accent/20 rounded-full text-white font-bold"
+              >
+                AI CORE
+              </motion.span>
+            </div>
+            <div className="mt-8 w-48 h-48 border border-white/10 rounded-full flex items-center justify-center relative animate-[spin_20s_linear_infinite]">
+               <div className="absolute w-full h-[1px] bg-accent/50 rotate-45" />
+               <div className="absolute w-full h-[1px] bg-accent/50 -rotate-45" />
+               <div className="w-24 h-24 border border-accent/50 rounded-full animate-[spin_10s_reverse_linear_infinite] flex items-center justify-center relative">
+                  {/* Moving data packets on the ring */}
+                  <motion.div 
+                    animate={{ rotate: 360 }} 
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    className="absolute w-full h-full rounded-full"
+                  >
+                    <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_15px_white] absolute top-[-6px] left-1/2 -translate-x-1/2" />
+                  </motion.div>
+                  <div className="w-4 h-4 bg-accent rounded-full shadow-[0_0_20px_var(--color-accent)] animate-pulse" />
+               </div>
+            </div>
+          </div>
+        );
+      case 'smart-research-assistant':
+        return (
+          <div className="w-full h-full flex flex-col justify-center items-center gap-6 relative">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-background to-background" />
+            
+            <div className="flex flex-col items-center z-10 w-full max-w-sm">
+              <motion.div 
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                className="px-6 py-2 border border-white/10 bg-white/5 rounded backdrop-blur-sm"
+              >
+                DOCUMENT
+              </motion.div>
+              
+              {/* Flowing data line */}
+              <div className="h-10 w-[2px] bg-white/10 relative overflow-hidden my-2">
+                <motion.div 
+                  animate={{ y: [-40, 40] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  className="w-full h-1/2 bg-cyan-400 blur-[2px]" 
+                />
+              </div>
+
+              <div className="flex gap-4">
+                {[1,2,3,4].map((item, i) => (
+                  <motion.div 
+                    key={item} 
+                    animate={{ y: [0, -10, 0], borderColor: ["rgba(6,182,212,0.3)", "rgba(6,182,212,1)", "rgba(6,182,212,0.3)"] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                    className="w-10 h-10 bg-cyan-500/10 border-2 rounded-lg flex items-center justify-center text-sm font-mono text-cyan-200"
+                  >
+                    E{item}
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Flowing data line */}
+              <div className="h-10 w-[2px] bg-cyan-500/20 relative overflow-hidden my-2">
+                <motion.div 
+                  animate={{ y: [-40, 40] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+                  className="w-full h-1/2 bg-cyan-400 blur-[2px]" 
+                />
+              </div>
+
+              <motion.div 
+                animate={{ scale: [1, 1.05, 1], boxShadow: ["0 0 15px rgba(6,182,212,0.3)", "0 0 30px rgba(6,182,212,0.8)", "0 0 15px rgba(6,182,212,0.3)"] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="px-8 py-3 border border-cyan-400 bg-cyan-900/30 rounded-xl text-cyan-300 font-bold tracking-widest backdrop-blur-md"
+              >
+                LLM ANSWER
+              </motion.div>
+            </div>
+          </div>
+        );
+      case 'ai-resume-analyzer':
+        return (
+          <div className="w-full h-full flex flex-col justify-center items-center gap-4 relative">
+             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-violet-900/30 via-background to-background" />
+             
+             <div className="relative z-10 grid grid-cols-2 gap-8 w-full max-w-lg px-8">
+                {/* Resume Scanning Animation */}
+                <div className="border border-white/20 bg-white/5 p-5 rounded-lg flex flex-col gap-4 relative overflow-hidden h-40 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+                   <div className="w-full h-2 bg-white/10 rounded" />
+                   <div className="w-3/4 h-2 bg-white/10 rounded" />
+                   <div className="w-5/6 h-2 bg-white/10 rounded" />
+                   <div className="w-1/2 h-2 bg-white/10 rounded" />
+                   <div className="w-full h-2 bg-white/10 rounded" />
+                   
+                   {/* Laser Scanner */}
+                   <motion.div 
+                     animate={{ y: [-10, 140, -10] }}
+                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                     className="absolute top-0 left-0 w-full h-[2px] bg-violet-400 shadow-[0_0_15px_rgba(139,92,246,1)] z-20" 
+                   >
+                     <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-violet-500/40 to-transparent pointer-events-none" />
+                   </motion.div>
+                </div>
+                
+                {/* Metrics */}
+                <div className="flex flex-col justify-center gap-6">
+                   <div className="flex flex-col gap-2">
+                     <div className="flex items-center justify-between text-xs font-mono">
+                       <span className="text-gray-300">NLP PARSING</span>
+                       <span className="text-green-400">100%</span>
+                     </div>
+                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                       <motion.div 
+                         animate={{ width: ["0%", "100%", "100%"] }} 
+                         transition={{ duration: 3, repeat: Infinity, times: [0, 0.4, 1] }}
+                         className="h-full bg-green-500" 
+                       />
+                     </div>
+                   </div>
+
+                   <div className="flex flex-col gap-2">
+                     <div className="flex items-center justify-between text-xs font-mono">
+                       <span className="text-gray-300">ATS SCORE</span>
+                       <span className="text-cyan-400">92%</span>
+                     </div>
+                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                       <motion.div 
+                         animate={{ width: ["0%", "92%", "92%"] }} 
+                         transition={{ duration: 3, repeat: Infinity, times: [0, 0.5, 1], delay: 0.2 }}
+                         className="h-full bg-cyan-400" 
+                       />
+                     </div>
+                   </div>
+
+                   <div className="flex flex-col gap-2">
+                     <div className="flex items-center justify-between text-xs font-mono">
+                       <span className="text-gray-300">AI SUGGESTIONS</span>
+                       <motion.span 
+                         animate={{ opacity: [0, 1, 1] }} 
+                         transition={{ duration: 3, repeat: Infinity, times: [0, 0.7, 1] }}
+                         className="text-violet-400"
+                       >
+                         GENERATED
+                       </motion.span>
+                     </div>
+                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                       <motion.div 
+                         animate={{ width: ["0%", "100%", "100%"] }} 
+                         transition={{ duration: 3, repeat: Infinity, times: [0, 0.6, 1], delay: 0.4 }}
+                         className="h-full bg-violet-400" 
+                       />
+                     </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <section 
+      id="projects" 
+      ref={sectionRef} 
+      className="h-screen w-full bg-background overflow-hidden flex items-center"
+    >
+      <div 
+        ref={scrollContainerRef} 
+        className="flex h-full w-[300vw]"
+      >
+        {data.projects.map((project, index) => (
+          <div 
+            key={project.id} 
+            className="project-panel relative w-screen h-full flex items-center justify-center p-6 md:p-12 lg:p-24"
+          >
+            {/* Background Project Number - Pushed to the far left edge of the screen so it doesn't overlap with text */}
+            <div className="absolute top-10 left-2 md:top-12 md:left-4 lg:top-16 lg:left-8 text-[15vw] md:text-[10vw] lg:text-[8vw] font-bold text-white/[0.05] leading-none pointer-events-none select-none z-0">
+              {index + 1}
+            </div>
+
+            <div className="w-full px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24 h-auto lg:h-[80vh] items-center relative z-10 max-h-[90vh] overflow-y-auto lg:overflow-visible">
+              
+              {/* Content Side */}
+              <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10">
+                <div className="text-xs font-mono tracking-widest text-accent mb-6">
+                  {project.date}
+                </div>
+                
+                <h3 className="project-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter mb-4 md:mb-8 leading-none text-outline text-outline-hover transition-colors duration-300">
+                  {project.title}
+                </h3>
+                
+                <div className="project-desc space-y-2 md:space-y-4 mb-4 md:mb-8">
+                  {project.description.map((text, i) => (
+                    <p key={i} className="text-gray-400 text-sm md:text-base lg:text-lg font-light leading-relaxed">
+                      {text}
+                    </p>
+                  ))}
+                </div>
+                
+                <div className="project-tech flex flex-wrap gap-3 mt-auto">
+                  {project.technologies.map((t, i) => (
+                    <span 
+                      key={i} 
+                      className="px-4 py-2 border border-white/10 rounded-full text-xs font-mono tracking-wide text-gray-300 bg-white/5"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Visual Side */}
+              <div 
+                className="h-full min-h-[200px] md:min-h-[300px] lg:min-h-[500px] border border-white/10 bg-surface rounded-xl overflow-hidden order-1 lg:order-2 cursor-hover group relative"
+                data-cursor-text="VIEW"
+              >
+                {/* Subtle border glow on hover */}
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-xl transition-colors duration-500 z-20 pointer-events-none" />
+                
+                {getVisual(project.id)}
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
