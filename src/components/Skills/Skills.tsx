@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { Float, Html } from '@react-three/drei';
 import type { PortfolioData } from '../../types/portfolio';
 
@@ -69,33 +69,34 @@ const getIconUrl = (skill: string) => {
 };
 
 const FloatingTechIcons = ({ skills }: { skills: string[] }) => {
+  const { viewport } = useThree();
+  const isMobile = viewport.width < 12;
+
   return (
     <group>
       {skills.slice(0, 12).map((skill, i) => {
         const total = Math.min(skills.length, 12);
         
-        // Arrange linearly in a grid (Max 5 items per row to fit safely)
-        const columns = total > 5 ? 5 : total; 
+        const maxCols = isMobile ? 3 : 5;
+        const columns = total > maxCols ? maxCols : total; 
         const row = Math.floor(i / columns);
         const col = i % columns;
         
-        const spacingX = 4.0; // Extra wide horizontal spacing to completely prevent overlap
-        const spacingY = 4.5; // Greatly increased vertical spacing for multi-row categories like ML and SE
+        const spacingX = isMobile ? 2.2 : 4.0;
+        const spacingY = isMobile ? 2.5 : 4.5;
         
-        // Center the grid dynamically
         const startX = -((columns - 1) * spacingX) / 2;
         const totalRows = Math.ceil(total / columns);
         const startY = ((totalRows - 1) * spacingY) / 2;
         
         const x = startX + col * spacingX;
         const y = startY - row * spacingY;
-        const z = 0; // Keep on flat plane to stay inside frame
+        const z = 0;
 
         return (
           <Float key={i} speed={2} rotationIntensity={0.2} floatIntensity={0.5} position={[x, y, z]}>
-            <Html center transform sprite distanceFactor={14}>
-              {/* Massive size: w-20 h-20 / md:w-24 md:h-24 for prominent icons */}
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#0a0a1a]/80 backdrop-blur-xl border border-indigo-500/40 p-4 md:p-5 flex items-center justify-center shadow-[0_4px_15px_rgba(34,211,238,0.1)] hover:border-cyan-400 hover:scale-110 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300">
+            <Html center transform sprite distanceFactor={isMobile ? 10 : 14}>
+              <div className="w-14 h-14 md:w-24 md:h-24 rounded-2xl bg-[#0a0a1a]/80 backdrop-blur-xl border border-indigo-500/40 p-3 md:p-5 flex items-center justify-center shadow-[0_4px_15px_rgba(34,211,238,0.1)] hover:border-cyan-400 hover:scale-110 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300">
                 <img 
                   src={getIconUrl(skill)} 
                   alt={skill} 
