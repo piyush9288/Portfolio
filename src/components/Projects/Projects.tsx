@@ -268,7 +268,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                 <div className="flex items-start lg:block gap-2 sm:gap-4 mb-4 md:mb-8 relative">
                   
                   {/* Background Project Number - Side-by-side on mobile, Absolute Watermark on PC */}
-                  <div className="text-[25vw] sm:text-[20vw] lg:text-[10vw] font-bold text-white/[0.08] lg:text-white/[0.04] leading-[0.8] select-none flex-shrink-0 lg:absolute lg:-top-20 lg:-left-12 lg:z-[-1]">
+                  <div className="-ml-3 sm:-ml-2 text-[25vw] sm:text-[20vw] lg:text-[10vw] font-bold text-white/[0.08] lg:text-white/[0.04] leading-[0.8] select-none flex-shrink-0 lg:absolute lg:-top-20 lg:-left-12 lg:z-[-1] lg:ml-0">
                     {index + 1}
                   </div>
                   
