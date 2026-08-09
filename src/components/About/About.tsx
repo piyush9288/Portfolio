@@ -110,7 +110,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
             </div>
 
             {/* Title */}
-            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] uppercase perspective-1000">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1] uppercase perspective-1000 flex flex-wrap gap-x-3 sm:gap-x-4">
               <motion.div 
                 initial={{ opacity: 0, y: 30, rotateX: -30 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -134,7 +134,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)] pb-3"
               >
                 with AI.
               </motion.div>
