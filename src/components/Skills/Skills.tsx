@@ -293,11 +293,6 @@ const Skills: React.FC<SkillsProps> = ({ data }) => {
                 </AnimatePresence>
               </React.Fragment>
             ))}
-            
-            {/* Show empty visual at bottom on mobile if nothing is selected */}
-            {isMobileView && activeCategory === null && (
-               <ActiveVisual inAccordion={true} />
-            )}
           </div>
 
           {/* Right Side - Dynamic 3D Display & Skills (PC ONLY) */}
