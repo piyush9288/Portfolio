@@ -131,7 +131,7 @@ const Skills: React.FC<SkillsProps> = ({ data }) => {
                 Expertise
               </h2>
             </div>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase text-white">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase text-white whitespace-nowrap overflow-hidden">
               Technical Arsenal
             </h3>
           </motion.div>
