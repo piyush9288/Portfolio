@@ -76,6 +76,29 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
           );
         }
       });
+
+      // Special handling for the last project when scrolling UP from the bottom of the page
+      if (panels.length > 0) {
+        const lastPanelContent = panels[panels.length - 1].children[0].children;
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: 'bottom 100%', // When the bottom of the section hits the bottom of the viewport
+          onLeave: () => {
+            // Hide the last project when scrolling down into the footer
+            gsap.set(lastPanelContent, { opacity: 0, y: 100 });
+          },
+          onEnterBack: () => {
+            // Animate it back up smoothly when scrolling up into the projects section
+            gsap.to(lastPanelContent, {
+              opacity: 1,
+              y: 0,
+              stagger: 0.4,
+              duration: 2.0,
+              ease: 'power2.out'
+            });
+          }
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
