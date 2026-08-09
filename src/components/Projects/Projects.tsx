@@ -21,16 +21,35 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
 
       const panels = gsap.utils.toArray('.project-panel') as HTMLElement[];
       
-      gsap.to(panels, {
+      const mainScrollTween = gsap.to(panels, {
         xPercent: -100 * (panels.length - 1),
         ease: 'none',
         scrollTrigger: {
-          id: 'mainScroll',
           trigger: sectionRef.current,
           pin: true,
           scrub: 1,
           snap: 1 / (panels.length - 1),
           end: () => `+=${scrollContainer.offsetWidth}`,
+          onLeave: () => {
+            // Hide the last project when scrolling down into the footer
+            if (panels.length > 0) {
+              const lastPanelContent = panels[panels.length - 1].children[0].children;
+              gsap.set(lastPanelContent, { opacity: 0, y: 100 });
+            }
+          },
+          onEnterBack: () => {
+            // Animate it back up smoothly when scrolling up into the projects section
+            if (panels.length > 0) {
+              const lastPanelContent = panels[panels.length - 1].children[0].children;
+              gsap.to(lastPanelContent, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.4,
+                duration: 2.0,
+                ease: 'power2.out'
+              });
+            }
+          }
         }
       });
       
@@ -68,7 +87,7 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: panel,
-                containerAnimation: gsap.globalTimeline.getById('mainScroll') as any,
+                containerAnimation: mainScrollTween,
                 start: 'left 80%',
                 toggleActions: 'play none none reverse',
               }
@@ -76,29 +95,6 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
           );
         }
       });
-
-      // Special handling for the last project when scrolling UP from the bottom of the page
-      if (panels.length > 0) {
-        const lastPanelContent = panels[panels.length - 1].children[0].children;
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: 'bottom 100%', // When the bottom of the section hits the bottom of the viewport
-          onLeave: () => {
-            // Hide the last project when scrolling down into the footer
-            gsap.set(lastPanelContent, { opacity: 0, y: 100 });
-          },
-          onEnterBack: () => {
-            // Animate it back up smoothly when scrolling up into the projects section
-            gsap.to(lastPanelContent, {
-              opacity: 1,
-              y: 0,
-              stagger: 0.4,
-              duration: 2.0,
-              ease: 'power2.out'
-            });
-          }
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
