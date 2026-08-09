@@ -144,24 +144,26 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
               className="absolute -left-1 -top-1 w-2.5 h-2.5 bg-cyan-400 rounded-full"
             />
           </div>
-          <span className="text-cyan-400 font-mono text-sm tracking-[0.3em] uppercase font-bold">
+          <span className="text-cyan-400 font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase font-bold whitespace-nowrap overflow-hidden">
             System Online // Profile
           </span>
         </div>
 
         {/* Main Title */}
         <div className="perspective-1000 z-30">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter uppercase font-heading">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter uppercase font-heading flex flex-row items-end whitespace-nowrap">
             {/* First Name - Solid White */}
-            <div className="flex flex-wrap overflow-hidden pb-2">
+            <div className="flex pb-2">
               {firstName.split('').map((char, i) => (
                 <span key={`f-${i}`} className="name-char inline-block text-white drop-shadow-lg">
                   {char}
                 </span>
               ))}
             </div>
+            {/* Space between names */}
+            <div className="w-3 sm:w-6 md:w-8"></div>
             {/* Last Name - Glowing Gradient */}
-            <div className="flex flex-wrap overflow-hidden pb-6 mt-2">
+            <div className="flex pb-2">
               {lastName.split('').map((char, i) => (
                 <span key={`l-${i}`} className="name-char inline-block bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                   {char === ' ' ? '\u00A0' : char}
@@ -178,12 +180,12 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
 
         {/* Dynamic Typewriter Role & Description */}
         <div className="hero-desc mt-4 max-w-3xl">
-          <h2 className="text-xl md:text-3xl text-indigo-200 font-mono font-medium tracking-wide mb-6 h-10 flex items-center">
+          <h2 className="text-[0.7rem] sm:text-sm md:text-3xl text-indigo-200 font-mono font-medium tracking-widest sm:tracking-wide mb-6 h-10 flex items-center whitespace-nowrap overflow-hidden">
             {typedRole}
             <motion.span 
               animate={{ opacity: [0, 1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
-              className="inline-block w-3 h-8 bg-cyan-400 ml-3 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+              className="inline-block w-2 sm:w-3 h-5 sm:h-8 bg-cyan-400 ml-2 sm:ml-3 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
             />
           </h2>
           <div className="relative border-l-2 border-indigo-500/40 pl-6 py-2">
