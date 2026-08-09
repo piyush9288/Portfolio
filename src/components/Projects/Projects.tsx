@@ -263,8 +263,8 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               
               {/* Content Side */}
               <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10">
-                {/* Background Project Number - Anchored behind the project title */}
-                <div className="absolute top-0 -left-4 md:-top-10 md:-left-8 lg:-top-20 lg:-left-12 text-[40vw] md:text-[25vw] lg:text-[15vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-[-1] -translate-y-1/4">
+                {/* Background Project Number - Shrunk and pushed to the right on mobile to avoid overlapping the title/date */}
+                <div className="absolute top-0 right-2 md:top-0 md:right-4 lg:-top-20 lg:-left-12 text-[20vw] md:text-[15vw] lg:text-[10vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-[-1]">
                   {index + 1}
                 </div>
 
