@@ -17,10 +17,10 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
   };
 
   return (
-    <footer className="w-full bg-surface border-t border-white/5 py-12 px-6 lg:px-12 relative z-10">
-      <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="w-full bg-surface border-t border-white/5 py-10 md:py-12 px-6 lg:px-12 relative z-10">
+      <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 relative">
         
-        <div className="flex flex-col items-center md:items-start gap-2">
+        <div className="flex flex-col items-center md:items-start gap-2 w-full md:w-auto">
           <span className="text-xl font-bold tracking-tighter text-white">
             {data.name}
           </span>
@@ -29,15 +29,18 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
           </span>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center justify-center w-full md:w-auto mt-2 md:mt-0">
           <span className="text-xs font-mono text-gray-500">
             © {currentYear} ALL RIGHTS RESERVED
           </span>
-          
+        </div>
+        
+        {/* Back to top icon - Absolute right corner on mobile, static on PC */}
+        <div className="absolute right-0 top-0 md:relative md:right-auto md:top-auto">
           <button 
             onClick={scrollToTop}
             data-no-cursor="true"
-            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-white/30 transition-colors duration-300 group cursor-pointer wave-circle"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-white/30 transition-colors duration-300 group cursor-pointer wave-circle bg-surface/50"
             aria-label="Back to top"
           >
             <style>
