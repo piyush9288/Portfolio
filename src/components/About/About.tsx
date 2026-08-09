@@ -104,13 +104,13 @@ const About: React.FC<AboutProps> = ({ data }) => {
                   className="absolute -right-1 -top-1 w-2.5 h-2.5 bg-cyan-400 rounded-full"
                 />
               </div>
-              <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase font-bold">
+              <span className="text-cyan-400 font-mono text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] uppercase font-bold">
                 Introduction
               </span>
             </div>
 
             {/* Title */}
-            <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] uppercase perspective-1000">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] uppercase perspective-1000">
               <motion.div 
                 initial={{ opacity: 0, y: 30, rotateX: -30 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -152,7 +152,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
                 visible: { transition: { staggerChildren: 0.04 } },
                 hidden: {}
               }}
-              className="text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed text-indigo-100/50 mb-20"
+              className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed text-indigo-100/50 mb-12 md:mb-20"
             >
               {data.about.split(' ').map((word, i) => (
                 <motion.span 
@@ -172,7 +172,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
                   hidden: { opacity: 0, y: 15 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.6 } }
                 }}
-                className="inline-block mt-8 text-cyan-200/60 text-2xl lg:text-3xl"
+                className="inline-block mt-6 sm:mt-8 text-cyan-200/60 text-base sm:text-lg md:text-2xl lg:text-3xl"
               >
                 Specializing in Natural Language Processing, Retrieval-Augmented Generation, and full-stack system architecture.
               </motion.span>
@@ -207,9 +207,9 @@ const About: React.FC<AboutProps> = ({ data }) => {
                   {/* Bottom border glow on hover */}
                   <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-cyan-400 group-hover:w-full transition-all duration-500"></div>
                   
-                  <div className="text-4xl mb-6 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 transform origin-left">{feature.icon}</div>
-                  <h3 className="text-xl font-bold tracking-wider mb-3 text-indigo-100 group-hover:text-cyan-300 transition-colors duration-300">{feature.title}</h3>
-                  <p className="text-base text-indigo-200/60 font-mono tracking-wide leading-relaxed group-hover:text-indigo-100/90 transition-colors duration-300">{feature.desc}</p>
+                  <div className="text-3xl sm:text-4xl mb-4 sm:mb-6 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 transform origin-left">{feature.icon}</div>
+                  <h3 className="text-lg sm:text-xl font-bold tracking-wider mb-2 sm:mb-3 text-indigo-100 group-hover:text-cyan-300 transition-colors duration-300">{feature.title}</h3>
+                  <p className="text-sm sm:text-base text-indigo-200/60 font-mono tracking-wide leading-relaxed group-hover:text-indigo-100/90 transition-colors duration-300">{feature.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
