@@ -72,6 +72,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
 
         <a 
           href={`mailto:${data.contact.email}`}
+          data-cursor-text={data.contact.email}
           className="group relative inline-flex items-center justify-center px-10 py-5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-white hover:-translate-y-1"
         >
           <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]" />
