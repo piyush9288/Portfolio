@@ -85,7 +85,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
 
       <div className="w-full px-6 md:px-12 lg:px-20 relative z-10">
         {/* Full width container, no max-w limits */}
-        <div className="flex flex-col xl:flex-row gap-16 xl:gap-24 relative w-full">
+        <div className="flex flex-col xl:flex-row gap-6 sm:gap-8 md:gap-12 xl:gap-24 relative w-full">
           
           {/* Left Column - Headers */}
           <motion.div 
