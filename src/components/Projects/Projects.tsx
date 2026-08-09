@@ -258,16 +258,17 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
             key={project.id} 
             className="project-panel relative w-screen h-full flex items-center justify-center p-6 md:p-12 lg:p-24"
           >
-            {/* Background Project Number - Centered watermark on mobile, top-left on PC */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 md:top-12 md:left-4 lg:top-16 lg:left-8 text-[50vw] md:text-[10vw] lg:text-[8vw] font-bold text-white/[0.03] leading-none pointer-events-none select-none z-0">
-              {index + 1}
-            </div>
 
             <div className="w-full px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24 h-auto lg:h-[80vh] items-center relative z-10 max-h-[90vh] overflow-y-auto lg:overflow-visible">
               
               {/* Content Side */}
               <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10">
-                <div className="text-xs font-mono tracking-widest text-accent mb-6">
+                {/* Background Project Number - Anchored behind the project title */}
+                <div className="absolute top-0 -left-4 md:-top-10 md:-left-8 lg:-top-20 lg:-left-12 text-[40vw] md:text-[25vw] lg:text-[15vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-[-1] -translate-y-1/4">
+                  {index + 1}
+                </div>
+
+                <div className="text-xs font-mono tracking-widest text-accent mb-6 relative z-10">
                   {project.date}
                 </div>
                 
