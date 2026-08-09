@@ -171,7 +171,7 @@ const Navbar: React.FC = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: navLinks.length * 0.1 + 0.3, ease: 'easeOut' }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="group relative overflow-hidden mt-8 px-8 py-4 border border-white/20 bg-white/5 text-white font-mono tracking-widest text-xs sm:text-sm rounded-full transition-all duration-500 hover:border-white w-fit"
+                className="group relative overflow-hidden mt-8 ml-4 sm:ml-8 px-8 py-4 border border-white/20 bg-white/5 text-white font-mono tracking-widest text-xs sm:text-sm rounded-full transition-all duration-500 hover:border-white w-fit"
               >
                 <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"></div>
                 <span className="relative z-10 text-white group-hover:text-black transition-colors duration-500 font-bold">CONTACT ME</span>
@@ -185,7 +185,7 @@ const Navbar: React.FC = () => {
               transition={{ delay: 0.8 }}
               className="absolute bottom-10 left-10 sm:left-16 right-10 sm:right-16 flex justify-between items-end border-t border-white/10 pt-4"
             >
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 pl-4 sm:pl-6">
                 <span className="text-[10px] sm:text-xs font-mono text-gray-500 tracking-widest uppercase">Piyush Raj</span>
                 <span className="text-[10px] sm:text-xs font-mono text-gray-600 tracking-widest">© {new Date().getFullYear()}</span>
               </div>
