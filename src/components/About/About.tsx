@@ -110,7 +110,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
             </div>
 
             {/* Title */}
-            <div className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] uppercase perspective-1000">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[3rem] xl:text-[3.5rem] font-bold tracking-tighter leading-[1.1] uppercase perspective-1000">
               <motion.div 
                 initial={{ opacity: 0, y: 30, rotateX: -30 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -118,11 +118,11 @@ const About: React.FC<AboutProps> = ({ data }) => {
                 transition={{ duration: 0.8, delay: 0.1 }}
                 className="pb-3"
               >
-                <div className="whitespace-nowrap overflow-hidden">
+                <div className="whitespace-nowrap">
                   <span className="text-white">Merging</span>{' '}
                   <span className="text-indigo-200">Software</span>
                 </div>
-                <div className="whitespace-nowrap overflow-hidden">
+                <div className="whitespace-nowrap">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">with AI.</span>
                 </div>
               </motion.div>
