@@ -283,19 +283,19 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
                   </div>
                 </div>
                 
-                <div className="project-desc space-y-2 md:space-y-4 mb-4 md:mb-8">
+                <div className="project-desc space-y-1.5 sm:space-y-2 md:space-y-4 mb-4 md:mb-8">
                   {project.description.map((text, i) => (
-                    <p key={i} className="text-gray-400 text-sm md:text-base lg:text-lg font-light leading-relaxed">
+                    <p key={i} className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg font-light leading-relaxed">
                       {text}
                     </p>
                   ))}
                 </div>
                 
-                <div className="project-tech flex flex-wrap gap-3 mt-auto">
+                <div className="project-tech flex flex-wrap gap-2 sm:gap-3 mt-auto">
                   {project.technologies.map((t, i) => (
                     <span 
                       key={i} 
-                      className="px-4 py-2 border border-white/10 rounded-full text-xs font-mono tracking-wide text-gray-300 bg-white/5"
+                      className="px-2.5 py-1 sm:px-4 sm:py-2 border border-white/10 rounded-full text-[10px] sm:text-xs font-mono tracking-wide text-gray-300 bg-white/5"
                     >
                       {t}
                     </span>
