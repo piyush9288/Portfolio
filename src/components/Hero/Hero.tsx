@@ -188,10 +188,10 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
               className="inline-block w-2 sm:w-3 h-5 sm:h-8 bg-cyan-400 ml-2 sm:ml-3 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
             />
           </h2>
-          <div className="relative border-l-2 border-indigo-500/40 pl-6 py-2">
+          <div className="relative border-l-2 border-indigo-500/40 pl-4 sm:pl-6 py-2">
             {/* Decorative corner accent */}
             <div className="absolute top-0 -left-[2px] w-[2px] h-4 bg-cyan-400"></div>
-            <p className="text-lg md:text-xl text-gray-400 font-light tracking-wide leading-relaxed">
+            <p className="text-sm sm:text-base md:text-xl text-gray-400 font-light tracking-normal sm:tracking-wide leading-relaxed">
               {data.about}
             </p>
           </div>
