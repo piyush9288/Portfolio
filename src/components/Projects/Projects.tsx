@@ -35,22 +35,46 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
       });
       
       // Animations within panels
-      panels.forEach((panel) => {
-        const title = panel.querySelector('.project-title');
+      panels.forEach((panel, index) => {
+        // Select the Content Side and Visual Side containers
+        const contentElems = panel.children[0].children;
         
-        // Simple parallax effect for content inside panels
-        gsap.fromTo(title, 
-          { x: 100, opacity: 0 },
-          { 
-            x: 0, opacity: 1, 
-            scrollTrigger: {
-              trigger: panel,
-              containerAnimation: gsap.globalTimeline.getById('mainScroll') as any,
-              start: 'left center',
-              toggleActions: 'play none none reverse',
+        if (index === 0) {
+          // First project animates vertically when scrolling down into the section
+          gsap.fromTo(contentElems,
+            { opacity: 0, y: 100 },
+            {
+              opacity: 1, 
+              y: 0,
+              stagger: 0.2,
+              duration: 1.2,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 75%', // Animate when section is 75% in viewport
+                toggleActions: 'play none none reverse'
+              }
             }
-          }
-        );
+          );
+        } else {
+          // Subsequent projects animate horizontally as they scroll into view
+          gsap.fromTo(contentElems, 
+            { opacity: 0, x: 100 },
+            { 
+              opacity: 1, 
+              x: 0,
+              stagger: 0.2,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: panel,
+                containerAnimation: gsap.globalTimeline.getById('mainScroll') as any,
+                start: 'left 80%',
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+        }
       });
     }, sectionRef);
 
