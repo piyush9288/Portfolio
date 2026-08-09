@@ -84,9 +84,9 @@ const CustomCursor: React.FC = () => {
       <motion.div
         className="fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none z-[9998]"
         style={{
-          border: isHovering && !hoverText ? 'none' : isHovering ? 'none' : '1px solid rgba(255, 255, 255, 0.3)',
-          backgroundColor: isHovering && !hoverText ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-          backdropFilter: isHovering && !hoverText ? 'blur(4px)' : 'none',
+          border: isHovering ? 'none' : '1px solid rgba(255, 255, 255, 0.3)',
+          backgroundColor: isHovering ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+          backdropFilter: isHovering ? 'blur(4px)' : 'none',
         }}
         animate={{
           x: mousePosition.x - (isHovering ? 32 : 16),
