@@ -262,13 +262,13 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
             <div className="w-full px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24 h-auto lg:h-[80vh] items-center relative z-10 max-h-[90vh] overflow-y-auto lg:overflow-visible">
               
               {/* Content Side */}
-              <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10">
-                {/* Background Project Number - Shrunk and pushed to the right on mobile to avoid overlapping the title/date */}
-                <div className="absolute top-0 right-2 md:top-0 md:right-4 lg:-top-20 lg:-left-12 text-[20vw] md:text-[15vw] lg:text-[10vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-[-1]">
+              <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10 pt-12 sm:pt-16 lg:pt-0">
+                {/* Background Project Number - Kept in left corner, spaced above text on mobile */}
+                <div className="absolute top-0 left-0 lg:-top-20 lg:-left-12 text-[25vw] sm:text-[20vw] md:text-[15vw] lg:text-[10vw] font-bold text-white/[0.04] leading-none pointer-events-none select-none z-[-1]">
                   {index + 1}
                 </div>
 
-                <div className="text-xs font-mono tracking-widest text-accent mb-6 relative z-10">
+                <div className="text-xs font-mono tracking-widest text-accent mb-4 sm:mb-6 relative z-10 mt-2 sm:mt-4 lg:mt-0">
                   {project.date}
                 </div>
                 
