@@ -230,13 +230,13 @@ const Skills: React.FC<SkillsProps> = ({ data }) => {
                     </div>
 
                     {/* Skills Tag Area */}
-                    <div className="h-2/5 w-full p-8 flex flex-col justify-start bg-indigo-950/20 backdrop-blur-sm border-t border-indigo-500/20">
+                    <div className="h-2/5 w-full p-6 md:p-8 flex flex-col justify-start bg-indigo-950/20 backdrop-blur-sm border-t border-indigo-500/20">
                       <motion.h4 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-xl font-bold text-cyan-400 mb-6 tracking-wider uppercase flex items-center gap-3"
+                        className="text-sm sm:text-base md:text-xl font-bold text-cyan-400 mb-4 md:mb-6 tracking-normal sm:tracking-wider uppercase flex items-center gap-2 sm:gap-3 whitespace-nowrap overflow-hidden"
                       >
-                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0"></span>
                         {data.skillCategories[activeCategory].title}
                       </motion.h4>
                       
