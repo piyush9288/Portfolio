@@ -80,14 +80,31 @@ const CustomCursor: React.FC = () => {
         }}
       />
       
-      {/* Outer circle / Hover state */}
+      {/* Outer circle / Hover state Background */}
       <motion.div
-        className="fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none z-[9998]"
         style={{
-          border: isHovering ? 'none' : '1px solid rgba(255, 255, 255, 0.3)',
-          backgroundColor: isHovering ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-          backdropFilter: isHovering ? 'blur(4px)' : 'none',
+          border: isHovering && !hoverText ? 'none' : isHovering ? 'none' : '1px solid rgba(255, 255, 255, 0.3)',
+          backgroundColor: isHovering && !hoverText ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+          backdropFilter: isHovering && !hoverText ? 'blur(4px)' : 'none',
         }}
+        animate={{
+          x: mousePosition.x - (isHovering ? 32 : 16),
+          y: mousePosition.y - (isHovering ? 32 : 16),
+          width: isHovering ? 64 : 32,
+          height: isHovering ? 64 : 32,
+        }}
+        transition={{
+          type: 'spring',
+          damping: 25,
+          stiffness: 300,
+          mass: 0.5,
+        }}
+      />
+      
+      {/* Outer circle / Hover state Text Layer (Separate to fix mix-blend-difference) */}
+      <motion.div
+        className="fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - (isHovering ? 32 : 16),
           y: mousePosition.y - (isHovering ? 32 : 16),
@@ -105,7 +122,7 @@ const CustomCursor: React.FC = () => {
           <motion.span 
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-[10px] font-bold tracking-widest text-white uppercase mix-blend-difference"
+            className="text-[11px] font-bold tracking-[0.2em] text-white uppercase text-center leading-none"
           >
             {hoverText}
           </motion.span>
