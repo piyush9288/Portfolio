@@ -132,10 +132,10 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#030014] via-[#030014]/70 to-transparent pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-20 w-full lg:w-2/3 xl:w-3/5 px-6 md:px-16 lg:px-24 flex flex-col h-full justify-center pointer-events-none">
+      <div className="relative z-20 w-full lg:w-2/3 xl:w-3/5 px-6 md:px-16 lg:px-24 flex flex-col h-full justify-evenly py-[10vh] md:py-0 md:justify-center pointer-events-none">
         
         {/* Top Meta tag */}
-        <div className="hero-meta-tech flex items-center gap-4 mb-8">
+        <div className="hero-meta-tech flex items-center gap-4 md:mb-8">
           <div className="w-12 h-[2px] bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)] relative">
             {/* Blinking start node */}
             <motion.div 
@@ -149,56 +149,59 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
           </span>
         </div>
 
-        {/* Main Title */}
-        <div className="perspective-1000 z-30">
-          <h1 className="text-[12vw] sm:text-[10vw] md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter uppercase font-heading flex flex-row items-end whitespace-nowrap">
-            {/* First Name - Solid White */}
-            <div className="flex pb-2">
-              {firstName.split('').map((char, i) => (
-                <span key={`f-${i}`} className="name-char inline-block text-white drop-shadow-lg">
-                  {char}
-                </span>
-              ))}
-            </div>
-            {/* Space between names - kept tight on all mobile screens */}
-            <div className="w-3 md:w-6 lg:w-8 flex-shrink-0"></div>
-            {/* Last Name - Glowing Gradient */}
-            <div className="flex pb-2">
-              {lastName.split('').map((char, i) => (
-                <span key={`l-${i}`} className="name-char inline-block bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(99,102,241,0.4)]">
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
-            </div>
-          </h1>
-        </div>
-        
-        {/* Modern Glowing Divider */}
-        <div className="hero-divider h-[1px] max-w-2xl bg-gradient-to-r from-indigo-500 to-transparent my-3 md:my-6 relative">
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4 h-[2px] bg-cyan-400 blur-[2px]"></div>
-        </div>
+        {/* Middle Content Grouped for perfect vertical distribution on mobile */}
+        <div className="flex flex-col">
+          {/* Main Title */}
+          <div className="perspective-1000 z-30">
+            <h1 className="text-[12vw] sm:text-[10vw] md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter uppercase font-heading flex flex-row items-end whitespace-nowrap">
+              {/* First Name - Solid White */}
+              <div className="flex pb-2">
+                {firstName.split('').map((char, i) => (
+                  <span key={`f-${i}`} className="name-char inline-block text-white drop-shadow-lg">
+                    {char}
+                  </span>
+                ))}
+              </div>
+              {/* Space between names - kept tight on all mobile screens */}
+              <div className="w-3 md:w-6 lg:w-8 flex-shrink-0"></div>
+              {/* Last Name - Glowing Gradient */}
+              <div className="flex pb-2">
+                {lastName.split('').map((char, i) => (
+                  <span key={`l-${i}`} className="name-char inline-block bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+              </div>
+            </h1>
+          </div>
+          
+          {/* Modern Glowing Divider */}
+          <div className="hero-divider h-[1px] max-w-2xl bg-gradient-to-r from-indigo-500 to-transparent my-3 md:my-6 relative">
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4 h-[2px] bg-cyan-400 blur-[2px]"></div>
+          </div>
 
-        {/* Dynamic Typewriter Role & Description */}
-        <div className="hero-desc mt-2 md:mt-4 max-w-3xl">
-          <h2 className="text-[0.7rem] sm:text-sm md:text-3xl text-indigo-200 font-mono font-medium tracking-widest sm:tracking-wide mb-6 h-10 flex items-center whitespace-nowrap overflow-hidden">
-            {typedRole}
-            <motion.span 
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 0.8 }}
-              className="inline-block w-2 sm:w-3 h-5 sm:h-8 bg-cyan-400 ml-2 sm:ml-3 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
-            />
-          </h2>
-          <div className="relative border-l-2 border-indigo-500/40 pl-4 sm:pl-6 py-2">
-            {/* Decorative corner accent */}
-            <div className="absolute top-0 -left-[2px] w-[2px] h-4 bg-cyan-400"></div>
-            <p className="text-sm sm:text-base md:text-xl text-gray-400 font-light tracking-normal sm:tracking-wide leading-relaxed">
-              {data.about}
-            </p>
+          {/* Dynamic Typewriter Role & Description */}
+          <div className="hero-desc mt-2 md:mt-4 max-w-3xl">
+            <h2 className="text-[0.7rem] sm:text-sm md:text-3xl text-indigo-200 font-mono font-medium tracking-widest sm:tracking-wide mb-6 h-10 flex items-center whitespace-nowrap overflow-hidden">
+              {typedRole}
+              <motion.span 
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-2 sm:w-3 h-5 sm:h-8 bg-cyan-400 ml-2 sm:ml-3 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+              />
+            </h2>
+            <div className="relative border-l-2 border-indigo-500/40 pl-4 sm:pl-6 py-2">
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 -left-[2px] w-[2px] h-4 bg-cyan-400"></div>
+              <p className="text-sm sm:text-base md:text-xl text-gray-400 font-light tracking-normal sm:tracking-wide leading-relaxed">
+                {data.about}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Tech Stack Badges */}
-        <div className="mt-12 flex flex-wrap gap-4">
+        <div className="md:mt-12 flex flex-wrap gap-4">
           {['React 3D', 'Creative Coding', 'Full Stack', 'WebGL'].map((tech, idx) => (
             <div key={idx} className="tech-badge px-5 py-2 rounded-sm border border-indigo-500/30 bg-indigo-900/20 backdrop-blur-md text-indigo-100 font-mono text-xs md:text-sm tracking-widest uppercase hover:border-cyan-400 hover:bg-cyan-900/20 hover:text-cyan-300 transition-all duration-300 pointer-events-auto cursor-default">
               {tech}
