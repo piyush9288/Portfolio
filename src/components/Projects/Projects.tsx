@@ -264,16 +264,16 @@ const Projects: React.FC<ProjectsProps> = ({ data }) => {
               {/* Content Side */}
               <div className="flex flex-col justify-center h-full order-2 lg:order-1 relative z-10 lg:pt-0">
                 
-                {/* Header Section: Number + Title side-by-side on mobile */}
-                <div className="flex items-start lg:block gap-2 sm:gap-4 mb-4 md:mb-8 relative">
+                {/* Header Section: Number + Title side-by-side on both mobile and PC */}
+                <div className="flex items-start lg:items-center gap-2 sm:gap-4 lg:gap-8 mb-4 md:mb-8 relative">
                   
-                  {/* Background Project Number - Side-by-side on mobile, Absolute Watermark on PC */}
-                  <div className="-ml-3 sm:-ml-2 text-[25vw] sm:text-[20vw] lg:text-[10vw] font-bold text-white/[0.08] lg:text-white/[0.04] leading-[0.8] select-none flex-shrink-0 lg:absolute lg:-top-20 lg:-left-12 lg:z-[-1] lg:ml-0">
+                  {/* Background Project Number - Side-by-side everywhere */}
+                  <div className="-ml-3 sm:-ml-2 lg:ml-0 text-[25vw] sm:text-[20vw] lg:text-[8vw] xl:text-[10vw] font-bold text-white/[0.08] lg:text-white/[0.04] leading-[0.8] select-none flex-shrink-0">
                     {index + 1}
                   </div>
                   
                   <div className="flex flex-col justify-start pt-1 sm:pt-2 lg:pt-0 -ml-1 sm:ml-0">
-                    <div className="text-xs font-mono tracking-widest text-accent mb-2 sm:mb-4 lg:mb-6">
+                    <div className="text-xs font-mono tracking-widest text-accent mb-2 sm:mb-4 lg:mb-4">
                       {project.date}
                     </div>
                     
