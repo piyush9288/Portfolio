@@ -121,18 +121,18 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
       className="relative w-full h-screen flex flex-col justify-center overflow-hidden bg-[#030014]"
     >
       {/* 3D Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-x-0 bottom-0 h-[60%] md:inset-0 md:h-full z-0">
         <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
           <Scene />
         </Canvas>
       </div>
 
       {/* Tech Overlay Grid & Gradient */}
-      {/* Left to right gradient to ensure text readability against 3D scene */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#030014] via-[#030014]/70 to-transparent pointer-events-none" />
+      {/* Gradient to ensure text readability against 3D scene */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b md:bg-gradient-to-r from-[#030014] via-[#030014]/70 to-transparent pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-20 w-full lg:w-2/3 xl:w-3/5 px-6 md:px-16 lg:px-24 flex flex-col h-full justify-evenly py-[10vh] md:py-0 md:justify-center pointer-events-none">
+      <div className="relative z-20 w-full lg:w-2/3 xl:w-3/5 px-6 md:px-16 lg:px-24 flex flex-col h-full justify-start pt-[10vh] gap-6 md:gap-0 md:py-0 md:justify-center pointer-events-none">
         
         {/* Top Meta tag */}
         <div className="hero-meta-tech flex items-center gap-4 md:mb-8">
