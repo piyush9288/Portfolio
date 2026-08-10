@@ -87,7 +87,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
           </div>
         </a>
 
-        <div className="mt-32 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t border-white/10 pt-16">
+        <div className="mt-32 w-full grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 border-t border-white/10 pt-16">
           <a href={`mailto:${data.contact.email}`} data-no-cursor="true" className="flex flex-col items-center text-center gap-4 group">
             <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-500">
               <Mail className="w-5 h-5 text-gray-400 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_currentColor] transition-all duration-500" />
